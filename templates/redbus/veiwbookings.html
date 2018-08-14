@@ -1,0 +1,90 @@
+{% extends "redbus/_base.html" %}
+{% block content %}
+
+                                 {% csrf_token %}
+
+
+                <div style="padding-left: 200px; padding-right: 200px;padding-top: 140px" >
+                    <table class="table table-hover">
+                     <thead>
+                              <tr>
+
+                                <th scope="col">Ticket Id</th>
+                                <th scope="col">Travels</th>
+                                <th scope="col">No of Tickets</th>
+                                <th scope="col">Total Amount</th>
+                                <th scope="col">Status</th>
+                                  <th scope="col">Phoneno</th>
+                              </tr>
+                     </thead>
+
+
+                            <tbody>
+                                    {% for ticket in tickets %}
+                              <tr class="table-light">
+
+                                <td>
+                                    <div class="form-group">
+                                        {{ ticket.id }}
+                                    </div>
+                                </td>
+                                <td >
+                                  <div class="form-group">
+                                       {{ ticket.bus }}
+                                 </div>
+                                </td>
+
+                                   <td >
+                                    <div class="form-group">
+                                       5
+                                      </div>
+                                </td>
+                                  <td >
+                                    <div class="form-group">
+                                       {{ ticket.total_amount }}
+                                      </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        {{ ticket.status }}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        {{ ticket.phone_no }}
+                                    </div>
+                                </td>
+                                <td width="10%">
+                                    <div class="form-group">
+                                        <div class="form-group tm-form-element tm-form-element-2">
+                                            <a href="{% url 'myapp:ticket' ticket.id %}"  class="btn btn-primary tm-btn-search">View Ticket</a>
+                                        </div>
+                                    </div>
+                                </td>
+
+                              <td width="10%">
+                                    <div class="form-group">
+                                        <div class="form-group tm-form-element tm-form-element-2">
+                                            <a href="{% url 'myapp:cancelTicket' ticket.id %}" class="btn btn-primary tm-btn-search" >Cancel Ticket</a>
+                                        </div>
+                                    </div>
+                                </td>
+                               <td width="10%">
+                                    <div class="form-group">
+                                        <div class="form-group tm-form-element tm-form-element-2">
+                                            <a href="{% url 'myapp:sendmail' ticket.id %}" class="btn btn-primary tm-btn-search">Mail Ticket</a>
+                                        </div>
+                                    </div>
+                                </td>
+                              </tr>
+                              {% endfor %}
+
+                            </tbody>
+                          </table>
+
+                        </div>
+
+
+
+{% endblock%}
+

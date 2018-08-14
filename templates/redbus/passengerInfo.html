@@ -1,0 +1,67 @@
+{% extends "redbus/_base.html" %}
+{% block content %}
+
+
+                                 <form method="POST">
+                                 {% csrf_token %}
+                <div style="padding-left: 200px; padding-right: 200px;padding-top: 140px" >
+                    <table class="table table-hover">
+                            <thead>
+                              <tr>
+
+                                <th scope="col">Passenger Name</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">Gender</th>
+                                <th scope="col">Seat No</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                    {% for item in seats.items %}
+                              <tr class="table-light">
+
+                                <td width="30%"> <div class="form-group">
+                                        <input type="text" name="{{item.0}}" class="form-control col-form-label-sm" placeholder="passenger Name" id="inputDefault">
+                                      </div></td>
+                                <td width="15%"><div class="form-group">
+                                        <input type="text" name="{{item.0}}" class="form-control col-form-label-sm" placeholder="Age" id="inputDefault">
+                                 </div></td>
+                                <td width="25%">
+                                    <div class="form-group">
+                                        <select  class="form-control col-form-label-sm" name="{{item.0}}">
+                                          <option selected="">Gender</option>
+                                          <option value="male">Male</option>
+                                          <option value="female">Female</option>
+                                        </select>
+                                      </div></td>
+                                <td><div class="form-group">
+                                        <fieldset>
+                                          <input class="form-control col-form-label-sm" name="{{item.0}}" type="text" value="{{item.1 }}">
+                                        </fieldset>
+                                      </div></td>
+                              </tr>
+                              {% endfor %}
+
+                            </tbody>
+                          </table>
+
+                        </div>
+                        <div style="padding-left: 600px; padding-right: 600px" >
+                            <div  class="form-group">
+                                    <b><label>Phone number</label></b>
+                                    <input type="text" name="phoneno"  class="form-control" />
+                            </div>
+
+                        </div>
+                                 <div style="padding-left: 680px">
+                                  <div class="form-row tm-search-form-row">
+
+
+                                                            <div class="form-group tm-form-element tm-form-element-2">
+                                                                <button type="submit" class="btn btn-primary tm-btn-search">Submit Details</button>
+                                                            </div>
+                                                          </div>
+                                     </div>
+            </form>
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST">
+     {% csrf_token %}
+
+    PHONE NO:<input type="text" name="phoneno"/>
+    <br>
+    {% for item in seats.items %}
+
+        USER-NAME:<input type="text" name="{{item.0}}" />
+        AGE:<input type="text" name="{{item.0}}" />
+
+        GENDER
+        MALE:<input type="radio" name="gender{{item.0 }}" value="male"/>
+        FEMALE:<input type="radio" name="gender{{item.0 }}" value="female"/>
+
+        SEAT:<input type="text" value="{{item.1 }}" name="{{item.0}}"/>
+        <br>
+    {% endfor %}
+
+    <input type="submit"/>
+</form>
+</body>
+</html>

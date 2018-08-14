@@ -1,0 +1,55 @@
+{% extends "_base.html" %}
+{% block content %}
+<script>
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+<table class="table table-hover" style="margin-top: 30px" id="myTable">
+    <tr>
+        <th>Travels Name</th>
+        <th>Type</th>
+        <th>Date</th>
+     <th>Arival Time</th>
+     <th>Departure Time</th>
+     <th>Fare</th>
+     <th>Total Seats</th>
+     <th>Available Seats</th>
+     </tr>
+    {% for bus in buses %}
+
+    <tr>
+    <td>{{ bus.bus_name }}</td>
+    <td>{{ bus.type}}</td>
+     <td>{{ bus.date_of_journey }}</td>
+    <td>{{ bus.arriving_time }}</td>
+    <td>{{ bus.departure_time}}</td>
+    <td>{{bus.fare}}</td>
+    <td>{{bus.no_of_seats}}</td>
+    <td>{{bus.available_seats}}</td>
+    <td> <a  class="btn btn-default active;btn btn-info btn-sm" href="{{ bus.id }}">Book seats</a></td>
+
+    </tr>
+    {% endfor %}
+
+{% endblock %}
+
+
